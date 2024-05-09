@@ -40,14 +40,14 @@ function App() {
         }
       };
       
-      document.addEventListener('keydown', handleStart);
-      document.addEventListener('touchstart', handleStart);
+      document.addEventListener('keyup', handleStart);
+      document.addEventListener('touchend', handleStart);
       
 
       // Cleans up event listeners when the component is unmounted.
       return () => {
-        document.removeEventListener('keydown', handleStart);
-        document.removeEventListener('touchstart', handleStart);
+        document.removeEventListener('keyup', handleStart);
+        document.removeEventListener('touchend', handleStart);
       };
     }
   }, [start, level]);  
