@@ -10,7 +10,7 @@ function App() {
   const [level, setLevel] = useState(0); 
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
-  const [title, setTitle] = useState("Welcome!! Press Screen or keyboard to Start");
+  const [title, setTitle] = useState("");
   const [start, setStart] = useState(false);
   const [gamePattern, setGamePattern] = useState([]);
   const [userClickedPattern, setUserClickedPattern] = useState([]);
@@ -94,7 +94,6 @@ function App() {
 
   //Generates the next sequence and adds it to the game pattern.
   const nextSequence = () => {
-    console.log("nextSequence");
     setUserClickedPattern([]);
     setLevel(prevLevel => prevLevel + 1);
     const randomNumber = Math.floor(Math.random() * 4);
@@ -104,8 +103,9 @@ function App() {
     setGamePattern(prevPattern => [...prevPattern, randomChosenColour]);    
   };
 
-  const buttonClick = (color) => {    
-    if (level >= 1) {  // 버튼이 활성화 되어야 하는 조건
+  const buttonClick = (color) => {  
+    console.log(level)  
+    if (start && level >= 1) {  // 버튼이 활성화 되어야 하는 조건
       animateColor(color);  
       playSound(color);       
       setUserClickedPattern(prevPattern => [...prevPattern, color]);

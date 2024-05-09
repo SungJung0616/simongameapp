@@ -142,8 +142,8 @@ h2{
 
 @media (max-width: 400px) {
   .btn {
-    width: 125px;
-    height: 125px;
+    width: 100px;
+    height: 100px;
   }
 
   .container {
