@@ -86,11 +86,6 @@ h2{
   font-size: 1.5rem;
 }
 
-.score, .best-score {
-  flex: 1;
-}
-
-
 @media (max-width: 775px) {
   .btn {
     width: 150px;
@@ -140,7 +135,7 @@ h2{
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 405px) {
   .btn {
     width: 100px;
     height: 100px;
@@ -160,6 +155,6 @@ h2{
 
   .scoreboard{
     width: 90%;
-    font-size: 0.6rem;
+    font-size: 0.5rem;
   }
 }
