@@ -8,45 +8,54 @@ import './App.css';
 
 function App() {
   const [level, setLevel] = useState(0); 
+  const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
   const [title, setTitle] = useState("Welcome!! Press Screen or keyboard to Start");
   const [start, setStart] = useState(false);
   const [gamePattern, setGamePattern] = useState([]);
   const [userClickedPattern, setUserClickedPattern] = useState([]);
   const [activeColor, setActiveColor] = useState("");
-
   const buttonColours = ["green", "yellow", "red", "blue"];
 
-  
+  useEffect(() => {
+    if (level > 0) {
+      const newScore = score + 100;
+      setScore(newScore);
+      setBestScore(currentBest => Math.max(currentBest, newScore));
+    } else {
+      setScore(0);
+    }
+  }, [level])
 
   useEffect(() => {
-    // 게임이 시작되지 않았다면 이벤트 리스너 등록
+    // Registers event listeners if the game has not started.
     if (!start) {
       const handleStart = (event) => {
         if (!start) {      
           setTitle("Level " + level);
+          
           nextSequence();
           setStart(true);
+          
         }
       };
-
+      
       document.addEventListener('keydown', handleStart);
       document.addEventListener('touchstart', handleStart);
+      
 
-      // 컴포넌트 언마운트 시 이벤트 리스너 정리
+      // Cleans up event listeners when the component is unmounted.
       return () => {
         document.removeEventListener('keydown', handleStart);
         document.removeEventListener('touchstart', handleStart);
       };
     }
-  }, [start, level]);  // 의존성 배열에 start와 level 추가
+  }, [start, level]);  
 
   useEffect(() => {
     if (start && userClickedPattern.length > 0 && userClickedPattern.length <= gamePattern.length) {
-      console.log("userClickedPattern",userClickedPattern.length);
-      console.log("gamePattern",gamePattern.length);
       const lastIndex = userClickedPattern.length - 1;
-      console.log("lastIndex",lastIndex);   
-      checkAnswer(lastIndex);
+       checkAnswer(lastIndex);
     }
   }, [userClickedPattern]);
 
@@ -58,8 +67,7 @@ function App() {
     }
   }, [level, start]);
 
-  const playSound = (name) => {
-    console.log("playSound");
+  const playSound = (name) => {    
     let soundUrl;
     switch (name) {
       case 'green':
@@ -84,25 +92,21 @@ function App() {
     audio.play();
   };
 
+  //Generates the next sequence and adds it to the game pattern.
   const nextSequence = () => {
     console.log("nextSequence");
     setUserClickedPattern([]);
     setLevel(prevLevel => prevLevel + 1);
-    console.log("level: ", level);
     const randomNumber = Math.floor(Math.random() * 4);
     const randomChosenColour = buttonColours[randomNumber];
     playSound(randomChosenColour);
     animateColor(randomChosenColour);
-    console.log("randomChosenColour: ", randomChosenColour);
-    setGamePattern(prevPattern => [...prevPattern, randomChosenColour]);
-    console.log("gamePattern: ", gamePattern);
+    setGamePattern(prevPattern => [...prevPattern, randomChosenColour]);    
   };
 
-  const buttonClick = (color) => {
-    console.log(`${color} button clicked`);
+  const buttonClick = (color) => {    
     animateColor(color);  
-    playSound(color);  
-    console.log("color:",color);    
+    playSound(color);       
     setUserClickedPattern(prevPattern => [...prevPattern, color]);
   };
 
@@ -115,28 +119,24 @@ function App() {
       setGamePattern([]);
       setUserClickedPattern([]);
       setStart(false);
+      setScore(0); // 점수 초기화
     }, 2000);
   };
 
-  const checkAnswer = (lastIndex) => {
-    console.log("gamePattern[lastIndex]",gamePattern[lastIndex]);
-    console.log("userClickedPattern[lastIndex]",userClickedPattern[lastIndex]);
-
-    if (gamePattern[lastIndex] !== userClickedPattern[lastIndex]) {
-      
+  const checkAnswer = (lastIndex) => {    
+    if (gamePattern[lastIndex] !== userClickedPattern[lastIndex]) {      
       startOver();
     } else if (userClickedPattern.length === gamePattern.length) {
       setTimeout(nextSequence, 1000);
     }
   };  
 
-
-  const animateColor = (color) => {
-    console.log("animateColor")
+  // Activates the animation for the selected color..  
+  const animateColor = (color) => {   
     setActiveColor(color);
     setTimeout(() => {
       setActiveColor("");
-    }, 300); // CSS 애니메이션 시간과 일치
+    }, 300); 
   };
 
   return (
@@ -156,6 +156,10 @@ function App() {
              className={`btn ${color} ${activeColor === color ? 'pressed' : ''}`}>          
              </div>
       ))}
+    </div>
+    <div className="scoreboard">
+      <div className="score">Score: {score}</div>
+      <div className="best-score">Best Score: {bestScore}</div>
     </div>
   </div>
   );

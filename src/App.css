@@ -18,7 +18,7 @@ body {
   border-radius: 30px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
   width: 60%;
-  height:  calc(100vh - 5rem);  
+  height: 90%;  
   position: absolute;
   top: 50%;
   left: 50%;
@@ -31,8 +31,7 @@ body {
 }
 
 h2{
-  margin-bottom: 70px; /* 기존 간격 유지 */
-  margin-top: -50px;
+  margin-bottom: 50px; /* 기존 간격 유지 */  
   color: #FEF2BF;
 }
 
@@ -79,6 +78,18 @@ h2{
   animation: fadeInOut 300ms ease-in-out;
 }
 
+.scoreboard {
+  display: flex;
+  justify-content: space-between; 
+  padding: 20px;
+  color: #FFF;
+  font-size: 1.5rem;
+}
+
+.score, .best-score {
+  flex: 1;
+}
+
 
 @media (max-width: 775px) {
   .btn {
@@ -97,6 +108,11 @@ h2{
     width: 90%;
     font-size: 1.75rem;
     margin-bottom: 5rem;
+  }
+
+  .scoreboard{
+    width: 90%;
+    font-size: 0.75rem;
   }
 }
 
@@ -117,6 +133,11 @@ h2{
     font-size: 1rem;
     margin-bottom: 1rem;
   }
+
+  .scoreboard{
+    width: 90%;
+    font-size: 0.6rem;
+  }
 }
 
 @media (max-width: 400px) {
@@ -135,5 +156,10 @@ h2{
   h2{
     font-size: 1rem;
     margin-bottom: 1rem;
+  }
+
+  .scoreboard{
+    width: 90%;
+    font-size: 0.6rem;
   }
 }
