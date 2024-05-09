@@ -105,9 +105,11 @@ function App() {
   };
 
   const buttonClick = (color) => {    
-    animateColor(color);  
-    playSound(color);       
-    setUserClickedPattern(prevPattern => [...prevPattern, color]);
+    if (level >= 1) {  // 버튼이 활성화 되어야 하는 조건
+      animateColor(color);  
+      playSound(color);       
+      setUserClickedPattern(prevPattern => [...prevPattern, color]);
+    }
   };
 
   const startOver = () => {
