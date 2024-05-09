@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Jacquard+12+Charted&family=Press+Start+2P&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rowdies:wght@300;400;700&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #FFF8DC;
+}
+
+
+
+.container{
+  font-family: "Press Start 2P", system-ui;
+  background-color: #011F3F;
+  border-radius: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  width: 60%;
+  height:  calc(100vh - 5rem);  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+
+h2{
+  margin-bottom: 70px; /* 기존 간격 유지 */
+  margin-top: -50px;
+  color: #FEF2BF;
+}
+
+.Row {
+  display: flex;
+  justify-content: center;  /* 중앙 정렬 */
+  flex-wrap: wrap;          /* 필요시 여러 줄로 나눔 */
+}
+
+
+.btn {
+  margin: 15px;  /* 간격 조정 */  
+  display: inline-block;
+  height: 200px;
+  width: 200px;
+  border-radius: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+}
+
+.green{
+  background-color: green;
+}
+
+.red{
+  background-color: red;
+}
+
+.blue{
+  background-color: blue;
+}
+
+.yellow{
+  background-color: yellow;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.pressed {
+  box-shadow: 0 0 20px white;
+  background-color: rgba(128, 128, 128, 0.5); 
+  animation: fadeInOut 300ms ease-in-out;
+}
+
+
+@media (max-width: 775px) {
+  .btn {
+    width: 150px;
+    height: 150px;
+  }
+
+  .container {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+  }
+
+  h2 {
+    width: 90%;
+    font-size: 1.75rem;
+    margin-bottom: 5rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .btn {
+    width: 150px;
+    height: 150px;
+  }
+
+  .container {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+  }
+
+  h2 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .btn {
+    width: 125px;
+    height: 125px;
+  }
+
+  .container {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+  }
+
+  h2{
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+}
