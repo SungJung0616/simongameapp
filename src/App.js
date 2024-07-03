@@ -105,7 +105,7 @@ function App() {
 
   const buttonClick = (color) => {  
     console.log(level)  
-    if (start && level >= 1) {  // 버튼이 활성화 되어야 하는 조건
+    if (start && level >= 1) {  
       animateColor(color);  
       playSound(color);       
       setUserClickedPattern(prevPattern => [...prevPattern, color]);
